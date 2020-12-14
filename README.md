@@ -1,2 +1,1 @@
-# Attendance_live
- 
+Biometric Attendance using Facial Recognition
