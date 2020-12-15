@@ -3,7 +3,6 @@
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: black;
   width: 100vw;
   height: 100vh;
 }
@@ -37,7 +36,7 @@
     width: 350px;
     height: 55px;
     z-index: 9999;
-    top: 45%;
+    top:25%;
     left: 0;
     right: 0;
     margin: auto;
