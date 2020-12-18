@@ -7,6 +7,7 @@ const snapSoundElement = document.getElementById('snapSound');
 const webcam = new Webcam(webcamElement, 'user', canvasElement, snapSoundElement);
 
 
+
 $("#webcam-switch").change(function () {
     if(this.checked){
         $('.md-modal').addClass('md-show');
@@ -72,6 +73,8 @@ function cameraStopped(){
 $("#take-photo").click(function () {
     beforeTakePhoto();
     let picture = webcam.snap();
+    
+
     document.querySelector('#download-photo').href = picture;
     afterTakePhoto();
 });
@@ -118,3 +121,20 @@ $("#exit-app").click(function () {
     removeCapture();
     $("#webcam-switch").prop("checked", false).change();
 });
+
+
+
+const Url ='https://jsonplaceholder.typicode.com/posts/';
+const data={
+    name:'ravi',
+    id:23
+}
+
+$("#download-photo").click(function(){
+    console.log('button clicked');
+    $.post(Url,data, function(data,status){
+        console.log(`${data} and status is ${status}`)
+        document.getElementById('output').style ="display:block;margin:auto!important;";
+        document.getElementById('output').textContent = `Response : ${status}`;
+    });
+})
