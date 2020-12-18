@@ -68,11 +68,11 @@ function cameraStopped(){
     $("#webcam-caption").html("Click to Start Camera");
     $('.md-modal').removeClass('md-show');
 }
-
+let picture;
 
 $("#take-photo").click(function () {
     beforeTakePhoto();
-    let picture = webcam.snap();
+    picture = webcam.snap();
     
 
     document.querySelector('#download-photo').href = picture;
@@ -124,10 +124,10 @@ $("#exit-app").click(function () {
 
 
 
-const Url ='https://jsonplaceholder.typicode.com/posts/';
+const Url ='http://127.0.0.1:5000/';
 const data={
-    name:'ravi',
-    id:23
+
+    image:picture
 }
 
 $("#download-photo").click(function(){
@@ -135,6 +135,6 @@ $("#download-photo").click(function(){
     $.post(Url,data, function(data,status){
         console.log(`${data} and status is ${status}`)
         document.getElementById('output').style ="display:block;margin:auto!important;";
-        document.getElementById('output').textContent = `Response : ${status}`;
+        document.getElementById('output').textContent = `Response : ${data}`;
     });
 })
