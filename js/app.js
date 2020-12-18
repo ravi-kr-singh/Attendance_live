@@ -69,9 +69,11 @@ function cameraStopped(){
     $('.md-modal').removeClass('md-show');
 }
 let picture;
-
+var img;
 $("#take-photo").click(function () {
     beforeTakePhoto();
+    img = document.querySelector('img') || document.createElement('img');
+    img.src = canvasElement.toDataURL('image/png');
     picture = webcam.snap();
     
 
@@ -124,17 +126,43 @@ $("#exit-app").click(function () {
 
 
 
-const Url ='http://127.0.0.1:5000/';
-const data={
 
-    image:picture
-}
+
 
 $("#download-photo").click(function(){
     console.log('button clicked');
-    $.post(Url,data, function(data,status){
-        console.log(`${data} and status is ${status}`)
-        document.getElementById('output').style ="display:block;margin:auto!important;";
-        document.getElementById('output').textContent = `Response : ${data}`;
+    
+    fetch(picture)
+    .then(res => res.blob())
+    .then(blob => {
+        const file = new File([blob], "capture.png", {
+            type: 'image/png'
+        });
+        var fd = new FormData();
+        fd.append("image", file);
+        $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "http://127.0.0.1:5000/",
+            data: fd,
+            processData: false,
+            contentType: false,
+            cache: false,
+            success: (data) => { 
+                console.log(`${data}`)
+                document.getElementById('output').style ="display:block;margin:auto!important;";
+                document.getElementById('output').textContent = `Response : ${data}`;
+            },
+            error: function(xhr, status, error) {
+               
+                document.getElementById('output').textContent = xhr.responseText;
+            }
+        });
     });
+
+
 })
+
+
+
+
