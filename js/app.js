@@ -68,16 +68,12 @@ function cameraStopped(){
     $("#webcam-caption").html("Click to Start Camera");
     $('.md-modal').removeClass('md-show');
 }
+
 let picture;
-var img;
 $("#take-photo").click(function () {
     beforeTakePhoto();
-    img = document.querySelector('img') || document.createElement('img');
-    img.src = canvasElement.toDataURL('image/png');
     picture = webcam.snap();
-    
-
-    document.querySelector('#download-photo').href = picture;
+    //document.querySelector('#download-photo').href = picture;
     afterTakePhoto();
 });
 
@@ -113,6 +109,7 @@ function removeCapture(){
 }
 
 $("#resume-camera").click(function () {
+    document.getElementById('output').style ="display:none;";
     webcam.stream()
         .then(facingMode =>{
             removeCapture();
@@ -120,11 +117,10 @@ $("#resume-camera").click(function () {
 });
 
 $("#exit-app").click(function () {
+    document.getElementById('output').style ="display:none;";
     removeCapture();
     $("#webcam-switch").prop("checked", false).change();
 });
-
-
 
 
 
