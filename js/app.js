@@ -126,8 +126,11 @@ $("#exit-app").click(function () {
 
 
 $("#download-photo").click(function(){
+    document.getElementById('output').style ="display:none;";
     console.log('button clicked');
     
+    
+
     fetch(picture)
     .then(res => res.blob())
     .then(blob => {
