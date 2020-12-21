@@ -155,7 +155,7 @@ $("#download-photo").click(function(){
         $.ajax({
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "nmnrna.pythonanywhere.com",
+            url: "http://nmnrna.pythonanywhere.com",
             data: fd,
             processData: false,
             contentType: false,
