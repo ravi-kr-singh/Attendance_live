@@ -163,12 +163,12 @@ $("#download-photo").click(function(){
             success: (data) => { 
                 console.log(`${data}`)
                 hideSpinner();
-                document.getElementById('output').style ="display:block;margin:auto!important;";
+                document.getElementById('output').style ="display:block;margin:auto!important;margin-top: 15px!important;";
                 document.getElementById('output').textContent = `Response : ${data}`;
             },
             error: function(xhr, status, error) {
                 hideSpinner();
-                document.getElementById('output').style ="display:block;margin:auto!important;";
+                document.getElementById('output').style ="display:block;margin:auto!important;margin-top: 15px!important;";
                 document.getElementById('output').textContent = `${error.message}`;
             }
         });
