@@ -123,12 +123,25 @@ $("#exit-app").click(function () {
 });
 
 
+const spinner = document.getElementById("spinner");
+
+function showSpinner() {
+    spinner.style ="display:block;"
+  
+}
+
+function hideSpinner() {
+    spinner.style ="display:none;"
+   
+}
+
+
 
 
 $("#download-photo").click(function(){
     document.getElementById('output').style ="display:none;";
     console.log('button clicked');
-    
+    showSpinner();
     
 
     fetch(picture)
@@ -149,10 +162,12 @@ $("#download-photo").click(function(){
             cache: false,
             success: (data) => { 
                 console.log(`${data}`)
+                hideSpinner();
                 document.getElementById('output').style ="display:block;margin:auto!important;";
                 document.getElementById('output').textContent = `Response : ${data}`;
             },
             error: function(xhr, status, error) {
+                hideSpinner();
                 document.getElementById('output').style ="display:block;margin:auto!important;";
                 document.getElementById('output').textContent = `${error.message}`;
             }
