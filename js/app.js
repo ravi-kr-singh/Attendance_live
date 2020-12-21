@@ -153,8 +153,8 @@ $("#download-photo").click(function(){
                 document.getElementById('output').textContent = `Response : ${data}`;
             },
             error: function(xhr, status, error) {
-               
-                document.getElementById('output').textContent = xhr.responseText;
+                document.getElementById('output').style ="display:block;margin:auto!important;";
+                document.getElementById('output').textContent = `${error.message}`;
             }
         });
     });
